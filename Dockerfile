@@ -1,0 +1,13 @@
+FROM nginx:1.25-alpine
+
+RUN rm -rf /usr/share/nginx/html/*
+
+COPY index.html /usr/share/nginx/html/
+COPY script.js  /usr/share/nginx/html/
+COPY style.css  /usr/share/nginx/html/
+
+RUN sed -i 's/listen\s*80;/listen 8080;/' /etc/nginx/conf.d/default.conf
+
+EXPOSE 8080
+
+CMD ["nginx", "-g", "daemon off;"]

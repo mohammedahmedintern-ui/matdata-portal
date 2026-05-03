@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MatDan Portal — an AI-powered election assistant that guides Indian citizens through eligibility, voter registration, and voting day preparation.">
+  <title>MatDan Portal — Your Indian Election Guide</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Analytics (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="top-bar" aria-label="Primary">
+      <a class="brand" href="#" aria-label="MatDan Portal home">
+        <span class="brand-mark" aria-hidden="true">मत</span>
+        <span>MatDan Portal</span>
+      </a>
+      <div class="nav-actions">
+        <span class="nav-note">Aapka matdan, aapka adhikaar</span>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+          Dark mode
+        </button>
+      </div>
+    </nav>
+
+    <section class="hero" aria-labelledby="app-title">
+      <div>
+        <h1 id="app-title">MatDan Portal</h1>
+        <p>Your personal guide to voting in India — step by step, in plain language.</p>
+      </div>
+      <div class="hero-panel" aria-label="Portal highlights">
+        <span>Eligibility Check</span>
+        <span>Voter Registration</span>
+        <span>Polling Day Prep</span>
+      </div>
+    </section>
+  </header>
+
+  <main class="app-shell">
+    <section class="wizard-card" aria-labelledby="wizard-title">
+      <div class="card-header">
+        <div>
+          <p class="section-label">Your personalised path</p>
+          <h2 id="wizard-title">Let's find your guidance</h2>
+        </div>
+        <button class="ghost-button" id="restartButton" type="button">Restart</button>
+      </div>
+
+      <div class="progress-wrap" aria-label="Wizard progress">
+        <ol class="progress-list" id="progressList"></ol>
+        <div class="progress-track" aria-hidden="true">
+          <span class="progress-fill" id="progressFill"></span>
+        </div>
+      </div>
+
+      <form class="wizard-form" id="wizardForm" novalidate>
+        <div id="stepContent"></div>
+        <p class="form-error" id="formError" role="alert"></p>
+
+        <div class="form-actions">
+          <button class="secondary-button" id="backButton" type="button">Back</button>
+          <button class="primary-button" id="nextButton" type="submit">Next</button>
+        </div>
+      </form>
+    </section>
+
+    <aside class="support-panel" aria-label="Helpful election information">
+      <section class="reminder-card" aria-labelledby="reminder-title">
+        <div class="mini-icon" aria-hidden="true">!</div>
+        <div>
+          <h2 id="reminder-title">Polling day reminder</h2>
+          <p id="savedReminderText">No reminder set yet.</p>
+        </div>
+      </section>
+
+      <section class="checklist-card" aria-labelledby="checklist-title">
+        <p class="section-label">Quick checklist</p>
+        <h2 id="checklist-title">Carry on polling day</h2>
+        <ul>
+          <li>Voter ID (EPIC) or any ECI-accepted photo identity</li>
+          <li>Polling booth slip if received from BLO</li>
+          <li>Water, medicines, and any personal essentials</li>
+        </ul>
+      </section>
+
+      <!-- DIFFERENTIATING FEATURE: Did You Know Election Facts -->
+      <section class="fact-card" aria-labelledby="fact-title">
+        <p class="section-label">Did you know?</p>
+        <h2 id="fact-title">Election facts</h2>
+        <div class="fact-box" id="factBox">
+          <p id="factText">Loading a fact…</p>
+        </div>
+        <button class="fact-next-btn" id="factNextBtn" type="button" aria-label="Next election fact">Next fact →</button>
+      </section>
+
+      <section class="community-card" aria-labelledby="community-title">
+        <p class="section-label">Live impact</p>
+        <h2 id="community-title">MatDan community</h2>
+        <p class="analytics-note">Interactions are recorded anonymously to improve guidance.</p>
+        <p class="community-count" id="userCountText">500+ citizens guided by MatDan</p>
+      </section>
+    </aside>
+
+    <section class="result-card hidden" id="resultCard" aria-labelledby="resultTitle" tabindex="-1">
+      <div class="result-heading">
+        <div>
+          <p class="section-label" id="resultPersona">Your guidance</p>
+          <h2 id="resultTitle"></h2>
+        </div>
+        <button class="ghost-button" id="editAnswersButton" type="button">Edit answers</button>
+      </div>
+      <div id="resultBody"></div>
+      <p class="firebase-status" id="firebaseSaveStatus" role="status"></p>
+
+      <form class="reminder-form" id="reminderForm">
+        <label for="reminderDate">Set a polling day reminder</label>
+        <div class="reminder-row">
+          <input id="reminderDate" name="reminderDate" type="date">
+          <button class="primary-button" type="submit">Save reminder</button>
+        </div>
+        <p class="form-success" id="reminderStatus" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>MatDan Portal is an educational demo. Always confirm official dates, documents, and booth details with the Election Commission of India (eci.gov.in).</p>
+    <p>Built for Hack2Skill · Firebase + Google Analytics integrated · Vercel deployed.</p>
+  </footer>
+
+  <script async type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+  <script async type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
